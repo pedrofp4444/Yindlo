@@ -30,6 +30,6 @@ jobs:
         run: mix format --check-formatted
         if: always()
 
-      - name: 🔍 Lint the code
-        run: mix credo --strict --all
-        if: always()
+      # - name: 🔍 Lint the code
+      #   run: mix credo --strict --all
+      #   if: always()

@@ -1,0 +1,31 @@
+<h1>Show House</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.house_show_path(@socket, :show, @house)}>
+    <.live_component
+      module={YindloWeb.HouseLive.FormComponent}
+      id={@house.id}
+      title={@page_title}
+      action={@live_action}
+      house={@house}
+      return_to={Routes.house_show_path(@socket, :show, @house)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @house.name %>
+  </li>
+
+  <li>
+    <strong>Capacity:</strong>
+    <%= @house.capacity %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.house_show_path(@socket, :edit, @house), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.house_index_path(@socket, :index) %></span>
