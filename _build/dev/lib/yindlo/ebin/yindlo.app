@@ -5,7 +5,7 @@
                              postgrex,phoenix_html,phoenix_live_reload,
                              phoenix_live_view,phoenix_live_dashboard,esbuild,
                              swoosh,telemetry_metrics,telemetry_poller,
-                             gettext,jason,plug_cowboy]},
+                             gettext,jason,plug_cowboy,tailwind]},
               {description,"yindlo"},
               {modules,['Elixir.Inspect.Yindlo.Accounts.User','Elixir.Yindlo',
                         'Elixir.Yindlo.Accounts',
