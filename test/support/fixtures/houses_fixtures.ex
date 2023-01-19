@@ -18,4 +18,19 @@ defmodule Yindlo.HousesFixtures do
 
     house
   end
+
+  @doc """
+  Generate a room.
+  """
+  def room_fixture(attrs \\ %{}) do
+    {:ok, room} =
+      attrs
+      |> Enum.into(%{
+        furniture_count: 42,
+        name: "some name"
+      })
+      |> Yindlo.Houses.create_room()
+
+    room
+  end
 end
