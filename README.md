@@ -1,5 +1,11 @@
 # Yindlo
 
+## Yindlo is a project created by UMinho college students
+
+This project was created in order to improve our skills and learn as much as we can.
+
+## How to start
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
