@@ -114,4 +114,60 @@ defmodule Yindlo.HousesTest do
       assert %Ecto.Changeset{} = Houses.change_room(room)
     end
   end
+
+  describe "furnitures" do
+    alias Yindlo.Houses.Furniture
+
+    import Yindlo.HousesFixtures
+
+    @invalid_attrs %{name: nil, state: nil}
+
+    test "list_furnitures/0 returns all furnitures" do
+      furniture = furniture_fixture()
+      assert Houses.list_furnitures() == [furniture]
+    end
+
+    test "get_furniture!/1 returns the furniture with given id" do
+      furniture = furniture_fixture()
+      assert Houses.get_furniture!(furniture.id) == furniture
+    end
+
+    test "create_furniture/1 with valid data creates a furniture" do
+      valid_attrs = %{name: "some name", state: "some state"}
+
+      assert {:ok, %Furniture{} = furniture} = Houses.create_furniture(valid_attrs)
+      assert furniture.name == "some name"
+      assert furniture.state == "some state"
+    end
+
+    test "create_furniture/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Houses.create_furniture(@invalid_attrs)
+    end
+
+    test "update_furniture/2 with valid data updates the furniture" do
+      furniture = furniture_fixture()
+      update_attrs = %{name: "some updated name", state: "some updated state"}
+
+      assert {:ok, %Furniture{} = furniture} = Houses.update_furniture(furniture, update_attrs)
+      assert furniture.name == "some updated name"
+      assert furniture.state == "some updated state"
+    end
+
+    test "update_furniture/2 with invalid data returns error changeset" do
+      furniture = furniture_fixture()
+      assert {:error, %Ecto.Changeset{}} = Houses.update_furniture(furniture, @invalid_attrs)
+      assert furniture == Houses.get_furniture!(furniture.id)
+    end
+
+    test "delete_furniture/1 deletes the furniture" do
+      furniture = furniture_fixture()
+      assert {:ok, %Furniture{}} = Houses.delete_furniture(furniture)
+      assert_raise Ecto.NoResultsError, fn -> Houses.get_furniture!(furniture.id) end
+    end
+
+    test "change_furniture/1 returns a furniture changeset" do
+      furniture = furniture_fixture()
+      assert %Ecto.Changeset{} = Houses.change_furniture(furniture)
+    end
+  end
 end
