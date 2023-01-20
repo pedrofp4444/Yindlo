@@ -1,0 +1,41 @@
+<h1>Listing Furnitures</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.furniture_index_path(@socket, :index)}>
+    <.live_component
+      module={YindloWeb.FurnitureLive.FormComponent}
+      id={@furniture.id || :new}
+      title={@page_title}
+      action={@live_action}
+      furniture={@furniture}
+      return_to={Routes.furniture_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>State</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="furnitures">
+    <%= for furniture <- @furnitures do %>
+      <tr id={"furniture-#{furniture.id}"}>
+        <td><%= furniture.name %></td>
+        <td><%= furniture.state %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.furniture_show_path(@socket, :show, furniture) %></span>
+          <span><%= live_patch "Edit", to: Routes.furniture_index_path(@socket, :edit, furniture) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: furniture.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Furniture", to: Routes.furniture_index_path(@socket, :new) %></span>

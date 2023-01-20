@@ -54,6 +54,12 @@ defmodule YindloWeb.Router do
       live "/rooms/:id/edit", RoomLive.Index, :edit
       live "/rooms/:id", RoomLive.Show, :show
       live "/rooms/:id/show/edit", RoomLive.Show, :edit
+
+      live "/furniture", FurnitureLive.Index, :index
+      live "/furniture/new", FurnitureLive.Index, :new
+      live "/furniture/:id/edit", FurnitureLive.Index, :edit
+      live "/furniture/:id", FurnitureLive.Show, :show
+      live "/furniture/:id/show/edit", FurnitureLive.Show, :edit
     end
   end
 

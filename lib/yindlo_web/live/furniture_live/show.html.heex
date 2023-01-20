@@ -1,0 +1,31 @@
+<h1>Show Furniture</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.furniture_show_path(@socket, :show, @furniture)}>
+    <.live_component
+      module={YindloWeb.FurnitureLive.FormComponent}
+      id={@furniture.id}
+      title={@page_title}
+      action={@live_action}
+      furniture={@furniture}
+      return_to={Routes.furniture_show_path(@socket, :show, @furniture)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @furniture.name %>
+  </li>
+
+  <li>
+    <strong>State:</strong>
+    <%= @furniture.state %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.furniture_show_path(@socket, :edit, @furniture), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.furniture_index_path(@socket, :index) %></span>

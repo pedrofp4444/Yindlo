@@ -1,10 +1,13 @@
 defmodule Yindlo.Houses.Room do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Yindlo.Houses
 
   schema "rooms" do
     field :furniture_count, :integer
     field :name, :string
+
+    has_many :furnitures, Houses.Furniture
 
     timestamps()
   end

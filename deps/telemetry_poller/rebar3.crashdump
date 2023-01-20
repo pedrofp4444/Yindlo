@@ -1,0 +1,20 @@
+Error: terminated
+[{io,format,
+     ["===> Compiling ~ts~n",[<<"telemetry_poller">>]],
+     [{file,"io.erl"},
+      {line,94},
+      {error_info,#{cause => {io,terminated},module => erl_stdlib_errors}}]},
+ {rebar_prv_compile,'-build_rebar3_apps/3-fun-1-',4,
+                    [{file,"/rebar3/src/rebar_prv_compile.erl"},{line,376}]},
+ {lists,foreach_1,2,[{file,"lists.erl"},{line,1442}]},
+ {rebar_prv_compile,'-build_rebar3_apps/3-lc$^0/1-0-',3,
+                    [{file,"/rebar3/src/rebar_prv_compile.erl"},{line,373}]},
+ {rebar_prv_compile,build_rebar3_apps,3,
+                    [{file,"/rebar3/src/rebar_prv_compile.erl"},{line,388}]},
+ {rebar_prv_compile,run_compilers,4,
+                    [{file,"/rebar3/src/rebar_prv_compile.erl"},{line,191}]},
+ {rebar_prv_compile,compile,4,
+                    [{file,"/rebar3/src/rebar_prv_compile.erl"},{line,153}]},
+ {rebar_prv_compile,compile,3,
+                    [{file,"/rebar3/src/rebar_prv_compile.erl"},{line,142}]}]
+
