@@ -1,41 +1,43 @@
-<h1>Listing Houses</h1>
+<div class="w-screen rounded-lg flex flex-col p-6 bg-white border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+  <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Listing Houses</h1>
 
-<%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.house_index_path(@socket, :index)}>
-    <.live_component
-      module={YindloWeb.HouseLive.FormComponent}
-      id={@house.id || :new}
-      title={@page_title}
-      action={@live_action}
-      house={@house}
-      return_to={Routes.house_index_path(@socket, :index)}
-    />
-  </.modal>
-<% end %>
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.house_index_path(@socket, :index)}>
+      <.live_component
+        module={YindloWeb.HouseLive.FormComponent}
+        id={@house.id || :new}
+        title={@page_title}
+        action={@live_action}
+        house={@house}
+        return_to={Routes.house_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Capacity</th>
+  <table class="border-separate border-spacing-2">
+    <thead>
+      <tr class="h-12 space-x-4">
+        <th class="text-white bg-blue-700 rounded-lg drop-shadow-lg">Name</th>
+        <th class="text-white bg-blue-700 rounded-lg drop-shadow-lg">Capacity</th>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="houses">
-    <%= for house <- @houses do %>
-      <tr id={"house-#{house.id}"}>
-        <td><%= house.name %></td>
-        <td><%= house.capacity %></td>
-
-        <td>
-          <span><%= live_redirect "Show", to: Routes.house_show_path(@socket, :show, house) %></span>
-          <span><%= live_patch "Edit", to: Routes.house_index_path(@socket, :edit, house) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: house.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody id="houses">
+      <%= for house <- @houses do %>
+        <tr id={"house-#{house.id}"}>
+          <td class="text-white text-center border-b"><%= house.name %></td>
+          <td class="text-white text-center border-b"><%= house.capacity %></td>
+  
+          <td>
+            <span type="button" class="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_redirect "Show", to: Routes.house_show_path(@socket, :show, house) %></span>
+            <span type="button" class="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_patch "Edit", to: Routes.house_index_path(@socket, :edit, house) %></span>
+            <span type="button" class="inline-block px-6 py-2.5 bg-red-500 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: house.id, data: [confirm: "Are you sure?"] %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<span><%= live_patch "New House", to: Routes.house_index_path(@socket, :new) %></span>
+  <span type="button" class="inline-block w-32 px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_patch "New House", to: Routes.house_index_path(@socket, :new) %></span>
+</div>
