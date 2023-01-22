@@ -1147,10 +1147,6 @@ select {
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
 }
 
-.p-6 {
-  padding: 1.5rem;
-}
-
 .p-2 {
   padding: 0.5rem;
 }
@@ -1158,6 +1154,9 @@ select {
 .p-8 {
   padding: 2rem;
 }
+
+.p-6 {
+  padding: 1.5rem;
 
 .p-12 {
   padding: 3rem;

@@ -1,31 +1,34 @@
-<h1>Show Room</h1>
+<div class="w-screen rounded-lg flex flex-col p-6 bg-white border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+  <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Show Room</h1>
 
-<%= if @live_action in [:edit] do %>
-  <.modal return_to={Routes.room_show_path(@socket, :show, @room)}>
-    <.live_component
-      module={YindloWeb.RoomLive.FormComponent}
-      id={@room.id}
-      title={@page_title}
-      action={@live_action}
-      room={@room}
-      return_to={Routes.room_show_path(@socket, :show, @room)}
-    />
-  </.modal>
-<% end %>
+  <%= if @live_action in [:edit] do %>
+    <.modal return_to={Routes.room_show_path(@socket, :show, @room)}>
+      <.live_component
+        module={YindloWeb.RoomLive.FormComponent}
+        id={@room.id}
+        title={@page_title}
+        action={@live_action}
+        room={@room}
+        return_to={Routes.room_show_path(@socket, :show, @room)}
+      />
+    </.modal>
+  <% end %>
 
-<ul>
+  <ul>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @room.name %>
-  </li>
+    <li>
+      <strong class="text-white rounded-lg drop-shadow-lg">Name:</strong>
+      <span class="text-white"><%= @room.name %></span>
+    </li>
 
-  <li>
-    <strong>Furniture count:</strong>
-    <%= @room.furniture_count %>
-  </li>
+    <li>
+      <strong class="text-white rounded-lg drop-shadow-lg">Furniture count:</strong>
+      <span class="text-white"><%= @room.furniture_count %></span>
+    </li>
 
-</ul>
-
-<span><%= live_patch "Edit", to: Routes.room_show_path(@socket, :edit, @room), class: "button" %></span> |
-<span><%= live_redirect "Back", to: Routes.room_index_path(@socket, :index) %></span>
+  </ul>
+  <table>
+    <td type="button" class="inline-block px-6 py-2.5 mt-2 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_patch "Edit", to: Routes.room_show_path(@socket, :edit, @room), class: "button" %></td>
+    <td type="button" class="inline-block px-6 py-2.5 mt-2 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_redirect "Back", to: Routes.room_index_path(@socket, :index) %></td>
+  </table>
+</div>
