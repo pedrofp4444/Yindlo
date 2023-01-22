@@ -1,41 +1,43 @@
-<h1>Listing Furnitures</h1>
+<div class="w-screen rounded-lg flex flex-col p-6 bg-white border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">  
+  <h1 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Listing Furnitures</h1>
 
-<%= if @live_action in [:new, :edit] do %>
-  <.modal return_to={Routes.furniture_index_path(@socket, :index)}>
-    <.live_component
-      module={YindloWeb.FurnitureLive.FormComponent}
-      id={@furniture.id || :new}
-      title={@page_title}
-      action={@live_action}
-      furniture={@furniture}
-      return_to={Routes.furniture_index_path(@socket, :index)}
-    />
-  </.modal>
-<% end %>
+  <%= if @live_action in [:new, :edit] do %>
+    <.modal return_to={Routes.furniture_index_path(@socket, :index)}>
+      <.live_component
+        module={YindloWeb.FurnitureLive.FormComponent}
+        id={@furniture.id || :new}
+        title={@page_title}
+        action={@live_action}
+        furniture={@furniture}
+        return_to={Routes.furniture_index_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>State</th>
+  <table class="border-separate border-spacing-2">
+    <thead>
+      <tr class="h-12 space-x-4">
+        <th class="text-white bg-blue-700 rounded-lg drop-shadow-lg">Name</th>
+        <th class="text-white bg-blue-700 rounded-lg drop-shadow-lg">State</th>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody id="furnitures">
-    <%= for furniture <- @furnitures do %>
-      <tr id={"furniture-#{furniture.id}"}>
-        <td><%= furniture.name %></td>
-        <td><%= furniture.state %></td>
-
-        <td>
-          <span><%= live_redirect "Show", to: Routes.furniture_show_path(@socket, :show, furniture) %></span>
-          <span><%= live_patch "Edit", to: Routes.furniture_index_path(@socket, :edit, furniture) %></span>
-          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: furniture.id, data: [confirm: "Are you sure?"] %></span>
-        </td>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody id="furnitures">
+      <%= for furniture <- @furnitures do %>
+        <tr id={"furniture-#{furniture.id}"}>
+          <td class="text-white text-center border-b"><%= furniture.name %></td>
+          <td class="text-white text-center border-b"><%= furniture.state %></td>
 
-<span><%= live_patch "New Furniture", to: Routes.furniture_index_path(@socket, :new) %></span>
+          <td>
+            <span type="button" class="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_redirect "Show", to: Routes.furniture_show_path(@socket, :show, furniture) %></span>
+            <span type="button" class="inline-block px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_patch "Edit", to: Routes.furniture_index_path(@socket, :edit, furniture) %></span>
+            <span type="button" class="inline-block px-6 py-2.5 bg-red-500 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: furniture.id, data: [confirm: "Are you sure?"] %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <span type="button" class="inline-block w-36 px-6 py-2.5 bg-gray-200 text-gray-700 font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out"><%= live_patch "New Furniture", to: Routes.furniture_index_path(@socket, :new) %></span>
+</div>
