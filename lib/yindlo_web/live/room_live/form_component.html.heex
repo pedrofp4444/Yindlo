@@ -1,5 +1,5 @@
-<div>
-  <h2><%= @title %></h2>
+<div class = "p-8 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+  <h2 class = "mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><%= @title %></h2>
 
   <.form
     let={f}
@@ -9,15 +9,21 @@
     phx-change="validate"
     phx-submit="save">
   
-    <%= label f, :name %>
+    <div class="text-white rounded-lg drop-shadow-lg mb-2">
+      <%= label f, :name %>
+    </div>
+
     <%= text_input f, :name %>
     <%= error_tag f, :name %>
   
-    <%= label f, :furniture_count %>
+    <div class="text-white rounded-lg drop-shadow-lg mb-2 mt-2">
+      <%= label f, :furniture_count %>
+    </div>
+
     <%= number_input f, :furniture_count %>
     <%= error_tag f, :furniture_count %>
   
-    <div>
+    <div class = "px-3 py-2 mt-8 w-40 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
       <%= submit "Save", phx_disable_with: "Saving..." %>
     </div>
   </.form>
