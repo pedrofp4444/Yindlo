@@ -1,53 +1,80 @@
-<h1>Settings</h1>
+<div class="grid h-screen place-items-center">
+  <div class="items-center rounded-lg flex flex-col p-6 bg-white border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <h1 class="mb-8 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Settings</h1>
 
-<h3>Change email</h3>
+    <h3 class="text-white rounded-lg drop-shadow-lg mb-2">Change email</h3>
 
-<.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email">
-  <%= if @email_changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
+    <.form let={f} for={@email_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_email">
+      <%= if @email_changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
+      
+      <%= hidden_input f, :action, name: "action", value: "update_email" %>
+      
+      <table>
+        <tr>
+          <div class="text-white rounded-lg drop-shadow-lg mb-2">
+            <%= label f, :email %>
+          </div>
+        
+          <%= email_input f, :email, required: true %>
+          <%= error_tag f, :email %>
+        
+          <div class="text-white rounded-lg drop-shadow-lg mb-2 mt-2">
+            <%= label f, :current_password, for: "current_password_for_email" %>
+          </div>
+        
+          <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" %>
+          <%= error_tag f, :current_password %>
+        </tr>
+      </table>
+      
+      <div class = "mx-auto px-3 py-2 mt-8 w-40 text-s font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <%= submit "Change email" %>
+      </div>
+    </.form>
 
-  <%= hidden_input f, :action, name: "action", value: "update_email" %>
+    <h3 class="text-white rounded-lg drop-shadow-lg mt-16 mb-2">Change password</h3>
 
-  <%= label f, :email %>
-  <%= email_input f, :email, required: true %>
-  <%= error_tag f, :email %>
+    <.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password">
+      <%= if @password_changeset.action do %>
+        <div class="alert alert-danger">
+          <p>Oops, something went wrong! Please check the errors below.</p>
+        </div>
+      <% end %>
+      
+      <%= hidden_input f, :action, name: "action", value: "update_password" %>
+      
+      <table>
+        <tr>
+          <div class="text-white rounded-lg drop-shadow-lg mb-2">
+            <%= label f, :password, "New password" %>
+          </div>
 
-  <%= label f, :current_password, for: "current_password_for_email" %>
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_email" %>
-  <%= error_tag f, :current_password %>
+          <%= password_input f, :password, required: true %>
+          <%= error_tag f, :password %>
+          
+          <div class="text-white rounded-lg drop-shadow-lg mb-2">
+            <%= label f, :password_confirmation, "Confirm new password" %>
+          </div>
 
-  <div>
-    <%= submit "Change email" %>
+          <%= password_input f, :password_confirmation, required: true %>
+          <%= error_tag f, :password_confirmation %>
+          
+          <div class="text-white rounded-lg drop-shadow-lg mb-2">
+            <%= label f, :current_password, for: "current_password_for_password" %>
+          </div>
+
+          <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password" %>
+          <%= error_tag f, :current_password %>
+        </tr>
+      </table>
+
+      <div class = "mx-auto px-3 py-2 mt-8 w-40 text-s font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <%= submit "Change password" %>
+      </div>
+    </.form>
   </div>
-</.form>
-
-<h3>Change password</h3>
-
-<.form let={f} for={@password_changeset} action={Routes.user_settings_path(@conn, :update)} id="update_password">
-  <%= if @password_changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
-    </div>
-  <% end %>
-
-  <%= hidden_input f, :action, name: "action", value: "update_password" %>
-
-  <%= label f, :password, "New password" %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <%= label f, :password_confirmation, "Confirm new password" %>
-  <%= password_input f, :password_confirmation, required: true %>
-  <%= error_tag f, :password_confirmation %>
-
-  <%= label f, :current_password, for: "current_password_for_password" %>
-  <%= password_input f, :current_password, required: true, name: "current_password", id: "current_password_for_password" %>
-  <%= error_tag f, :current_password %>
-
-  <div>
-    <%= submit "Change password" %>
-  </div>
-</.form>
+</div>
