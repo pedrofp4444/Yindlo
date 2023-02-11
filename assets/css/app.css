@@ -127,11 +127,12 @@
     @apply bg-gradient-to-r from-primary to-primary-shadow 
   }
   .bg-primary-light-gradient{
-    @apply bg-gradient-to-r from-primary to-primary-light 
+    @apply bg-gradient-to-r from-primary-light to-primary 
   }
-  .txt-primary-hover{
+  .text-primary-reactive{
     @apply text-primary-shadow hover:text-primary
   }
+
 }
 
 .mask1{

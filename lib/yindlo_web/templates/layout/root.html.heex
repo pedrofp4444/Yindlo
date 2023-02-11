@@ -9,23 +9,22 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
-  <body class=" ">
+  <body class=" w-full max-w-[1600px] mx-auto ">
       <header>
-        <section  class="w-full">
-          <nav>
-            <ul>
-              <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
-              <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-                <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-              <% end %>
-            </ul>
-            <%= render "_user_menu.html", assigns %>
-          </nav>
-          <a href="https://phoenixframework.org/" class="phx-logo">
-            <img src={Routes.static_path(@conn, "/images/phoenix.png")} alt="Phoenix Framework Logo"/>
-          </a>
+        <section  class="w-full p-4">
+          <div class="mx-auto">
+            <nav class="flex flex-row space-x-4 justify-between items-center h-24 px-4 bg-neutral-light rounded-xl ">
+                <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+                  <span><%= link "Live Dashboard", to: Routes.live_dashboard_path(@conn, :home) %></span>
+                <% end %>
+              <%= render "_user_menu.html", assigns %>
+            </nav>
+          </div>
         </section>
       </header>
       <%= @inner_content %>
+      <footer class="">
+        feet and stuff
+      </footer>
   </body>
 </html>
