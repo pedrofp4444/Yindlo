@@ -14,7 +14,7 @@
       <header>
         <section  class="w-full p-4">
           <div class="mx-auto">
-            <nav class="flex flex-row space-x-4 justify-between items-center h-24 px-4 bg-neutral-light rounded-xl ">
+            <nav class="flex flex-row space-x-4 justify-between items-center h-24 px-4 bg-neutral-light backdrop-blur-sm bg-opacity-50 rounded-xl z-10 relative">
                 <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
                   <span><%= link "Live Dashboard", to: Routes.live_dashboard_path(@conn, :home) %></span>
                 <% end %>

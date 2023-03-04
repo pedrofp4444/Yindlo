@@ -1,7 +1,7 @@
 <h1 class="sr-only">Log in</h1>
-<div class="relative min-h-full max flex flex-col justify-center py-12 sm:px-6 lg:px-4 z-30">
+<div class="relative min-h-full max flex flex-col justify-center py-12 sm:px-6 lg:px-4 z-30 bg-[url('https://img.freepik.com/free-photo/hand-presenting-model-house-home-loan-campaign_53876-104970.jpg')] bg-cover bg-no-repeat bg-center">
   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-    <div class="bg-neutral-light py-8 px-4 shadow rounded-2xl mx-2 sm:px-4  space-y-4">
+    <div class="bg-white bg-opacity-50 py-8 px-4 shadow rounded-2xl mx-2 sm:px-4  space-y-4 backdrop-blur-sm">
       <div class=" position-relative mx-3">
         <div class="bg-primary-gradient h-full shadow-primary rounded-xl py-6 content-center ">
           <img src="/assetes/svgs/logo-y.svg" alt="">
@@ -61,10 +61,12 @@
               </div>
               <%= error_tag f, :password %>
             </div>
-            <div class="block text-sm font-medium text-gray-700">
-
-              <%= checkbox f, :remember_me %>
-              <%= label f, :remember_me, "Keep me logged in for 60 days" %>
+            <div class="h-fit relative inline-flex items-center">
+              <label class="inline-flex items-center cursor-pointer text-sm font-medium text-gray-700 h-fit">
+                <%= checkbox f, :remember_me, class: "sr-only peer" %>              
+                <div class="w-9 h-5 bg-neutral-mid to-white shadow-md justify-self-center peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary-light dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-primary-gradient"></div>
+                <%= label f, :remember_me, "Keep me logged in", class: "ml-3 text-sm font-medium "%>
+              </label>
             </div>
 
             <div
